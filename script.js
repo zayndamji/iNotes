@@ -115,8 +115,18 @@ function renderNotesList() {
       focusNote(uuid);
     }
 
+    if (uuid == currentUUID) {
+      noteSelector.classList.add('selected');
+    } else {
+      noteSelector.classList.remove('selected');
+    }
+
     notesList.appendChild(noteSelector);
   }
+
+  const spacer = document.createElement('span')
+  spacer.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+  notesList.appendChild(spacer);
 }
 
 function truncate(string, numOfChars) {

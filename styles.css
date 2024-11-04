@@ -7,6 +7,38 @@ body {
   background-color: rgb(22, 22, 22);
 }
 
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: rgb(22, 22, 22);
+  padding: 8px 0;
+}
+
+#focusedNote {
+  width: 100%;
+  position: fixed;
+  top: 64px;
+  bottom: 64px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#notesList {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: rgb(22, 22, 22);
+  padding: 8px 16px;
+  overflow-x: scroll;
+  white-space: nowrap;
+  scrollbar-color: white rgb(22, 22, 22);
+}
+
 button {
   max-width: 256px;
   height: 32px;
@@ -17,10 +49,6 @@ button {
   background-color: transparent;
 }
 
-#focusedNote {
-  width: 100%;
-}
-
 .note {
   width: 100%;
   padding: 0;
@@ -29,6 +57,10 @@ button {
 
 .recentNotesTitle {
   color: white;
+}
+
+.selected {
+  border: rgb(107, 241, 107) solid 1px;
 }
 
 /* Overwriting Editor.JS default styles */
