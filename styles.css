@@ -6,13 +6,13 @@ body {
   text-align: center;
 }
 
-#createNote {
-  width: 20%;
+#createNote, .noteSelector {
+  min-width: 128px;
   height: 32px;
+  margin: 8px;
   border: black solid 1px;
   border-radius: 8px;
   background-color: transparent;
-  margin-bottom: 128px;
 }
 
 #focusedNote {
@@ -25,7 +25,13 @@ body {
   margin: 12px 0;
 }
 
+/* Overwriting Editor.JS default styles */
+
 .ce-block__content {
   background-color: #fcfcac;
   border: black solid 1px;
+}
+
+.codex-editor__redactor {
+  padding-bottom: 0px !important;
 }
