@@ -66,3 +66,15 @@ function renderNotesList() {
     notesList.appendChild(noteSelector);
   }
 }
+
+function truncate(string, numOfChars) {
+  if (string.length <= numOfChars) {
+    return string;
+  }
+
+  if (numOfChars <= 3) {
+    return string.substring(0, numOfChars);
+  }
+
+  return string.substring(0, numOfChars-3) + '...';
+}
