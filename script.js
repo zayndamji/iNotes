@@ -86,6 +86,11 @@ function renderNotesList() {
 
   notesList.textContent = '';
 
+  const recentNotesTitle = document.createElement('span');
+  recentNotesTitle.classList.add('recentNotesTitle');
+  recentNotesTitle.textContent = 'Recent Notes: '
+  notesList.appendChild(recentNotesTitle);
+
   for (const uuid of uuidList) {
     let selectorText = 'Empty Note';
     if (localStorage[uuid] != undefined) {
@@ -94,7 +99,7 @@ function renderNotesList() {
           noteContent.blocks[0] &&
           noteContent.blocks[0].data && 
           noteContent.blocks[0].data.text) {
-        selectorText = truncate(noteContent.blocks[0].data.text, 30);
+        selectorText = truncate(noteContent.blocks[0].data.text, 20);
         selectorText = sanitize(selectorText);
       }
     }
@@ -123,5 +128,5 @@ function truncate(string, numOfChars) {
 }
 
 function sanitize(string) {
-  return string.replace(/&nbsp;/gi, '');
+  return string.replace(/&nbsp;/gi, '').replace(/<b>/gi, '').replace(/<\/b>/gi, '');
 }

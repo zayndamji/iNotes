@@ -4,13 +4,15 @@ body {
   margin: 16px;
   font-family: Roboto, sans-serif;
   text-align: center;
+  background-color: rgb(22, 22, 22);
 }
 
 button {
-  min-width: 196px;
+  max-width: 256px;
   height: 32px;
   margin: 8px;
-  border: black solid 1px;
+  border: rgb(255, 255, 154) solid 1px;
+  color: white;
   border-radius: 8px;
   background-color: transparent;
 }
@@ -25,11 +27,16 @@ button {
   margin: 12px 0;
 }
 
+.recentNotesTitle {
+  color: white;
+}
+
 /* Overwriting Editor.JS default styles */
 
 .ce-block__content {
   background-color: #fcfcac;
-  border: black solid 1px;
+  border: rgb(255, 255, 154) solid 1px;
+  border-radius: 8px;
 }
 
 .codex-editor__redactor {
