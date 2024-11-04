@@ -6,8 +6,8 @@ body {
   text-align: center;
 }
 
-#createNote, .noteSelector {
-  min-width: 256px;
+button {
+  min-width: 196px;
   height: 32px;
   margin: 8px;
   border: black solid 1px;

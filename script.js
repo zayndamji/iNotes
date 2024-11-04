@@ -1,17 +1,45 @@
 const createNote = document.getElementById('createNote');
+const deleteNote = document.getElementById('deleteNote');
 const notesList = document.getElementById('notesList');
 const focusedNote = document.getElementById('focusedNote');
 
-let currentNote = undefined;
+let currentNote = undefined, currentUUID = undefined;
 
 const uuidList = JSON.parse(localStorage.getItem('uuidList'));
 if (uuidList) {
   focusNote(uuidList[uuidList.length-1]);
 }
 
-createNote.addEventListener('click', () => {
-  focusNote(crypto.randomUUID());
+createNote.addEventListener('click', createEmptyNote);
+
+deleteNote.addEventListener('click', () => {
+  if (currentUUID == undefined) return;
+
+  const uuidList = JSON.parse(localStorage.getItem('uuidList'));
+  if (uuidList == undefined) return;
+  if (uuidList.length == 0) return;
+
+  if (uuidList.length == 1) {
+    localStorage.removeItem(uuidList[0]);
+    uuidList.pop();
+    localStorage.setItem('uuidList', JSON.stringify(uuidList));
+    createEmptyNote();
+    return;
+  }
+
+  const uuidIndex = uuidList.indexOf(currentUUID);
+  uuidList.splice(uuidIndex, 1); // remove uuid at index uuidIndex
+  localStorage.setItem('uuidList', JSON.stringify(uuidList));
+  if (uuidIndex == 0) {
+    focusNote(uuidList[uuidIndex]);
+  } else {
+    focusNote(uuidList[uuidIndex-1]);
+  }
 });
+
+function createEmptyNote() {
+  focusNote(crypto.randomUUID());
+}
 
 function focusNote(uuid) {
   const uuidList = JSON.parse(localStorage.getItem('uuidList'));
@@ -46,6 +74,8 @@ function focusNote(uuid) {
       });
     }
   });
+  
+  currentUUID = uuid;
 
   renderNotesList();
 }
@@ -64,7 +94,7 @@ function renderNotesList() {
           noteContent.blocks[0] &&
           noteContent.blocks[0].data && 
           noteContent.blocks[0].data.text) {
-        selectorText = truncate(noteContent.blocks[0].data.text, 35);
+        selectorText = truncate(noteContent.blocks[0].data.text, 30);
         selectorText = sanitize(selectorText);
       }
     }
