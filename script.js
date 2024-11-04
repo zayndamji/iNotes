@@ -42,6 +42,7 @@ function focusNote(uuid) {
 
       currentNote.save().then((outputData) => {
         localStorage[uuid] = JSON.stringify(outputData);
+        renderNotesList();
       });
     }
   });
@@ -59,7 +60,13 @@ function renderNotesList() {
     let selectorText = 'Empty Note';
     if (localStorage[uuid] != undefined) {
       let noteContent = JSON.parse(localStorage[uuid]);
-      selectorText = truncate(noteContent.blocks[0].data.text, 30);
+      if (noteContent.blocks &&
+          noteContent.blocks[0] &&
+          noteContent.blocks[0].data && 
+          noteContent.blocks[0].data.text) {
+        selectorText = truncate(noteContent.blocks[0].data.text, 35);
+        selectorText = sanitize(selectorText);
+      }
     }
 
     const noteSelector = document.createElement('button');
@@ -83,4 +90,8 @@ function truncate(string, numOfChars) {
   }
 
   return string.substring(0, numOfChars-3) + '...';
+}
+
+function sanitize(string) {
+  return string.replace(/&nbsp;/gi, '');
 }
