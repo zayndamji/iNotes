@@ -6,15 +6,11 @@ createNote.addEventListener('click', () => {
   note.classList.add('note');
   note.setAttribute('uuid', crypto.randomUUID());
 
-  const noteTitle = document.createElement('div');
-  noteTitle.classList.add('noteTitle');
-  noteTitle.contentEditable = true;
-
   const noteInput = document.createElement('div');
   noteInput.classList.add('noteInput');
   noteInput.contentEditable = true;
 
-  note.append(noteTitle, noteInput);
+  note.append(noteInput);
 
   notesList.append(note);
 });
