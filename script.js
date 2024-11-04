@@ -6,21 +6,14 @@ let currentNote = undefined;
 
 const uuidList = JSON.parse(localStorage.getItem('uuidList'));
 if (uuidList) {
-  const lastUUID = uuidList[uuidList.length-1]
-  focusNote(lastUUID, localStorage[lastUUID]);
+  focusNote(uuidList[uuidList.length-1]);
 }
 
 createNote.addEventListener('click', () => {
   focusNote(crypto.randomUUID());
 });
 
-function focusNote(uuid, content) {
-  console.log(uuid, content);
-
-  if (content == undefined) {
-    content = "";
-  }
-
+function focusNote(uuid) {
   const uuidList = JSON.parse(localStorage.getItem('uuidList'));
   if (uuidList) {
     if (!uuidList.includes(uuid)) {
@@ -30,7 +23,6 @@ function focusNote(uuid, content) {
   } else {
     localStorage.setItem('uuidList', JSON.stringify([uuid]));
   }
-  localStorage[uuid] = '';
 
   const note = document.createElement('div');
   note.classList.add('note');
@@ -41,7 +33,17 @@ function focusNote(uuid, content) {
   focusedNote.appendChild(note);
 
   currentNote = new EditorJS({
-    holder: uuid
+    holder: uuid,
+
+    data: localStorage.getItem(uuid) ? JSON.parse(localStorage.getItem(uuid)) : undefined,
+
+    onChange: (api, event) => {
+      console.log(api, event);
+
+      currentNote.save().then((outputData) => {
+        localStorage[uuid] = JSON.stringify(outputData);
+      });
+    }
   });
 
   renderNotesList();
