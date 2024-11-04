@@ -5,16 +5,15 @@ const notes = {};
 
 const uuidList = JSON.parse(localStorage.getItem('uuidList'));
 if (uuidList) {
-  for (const uuid of uuidList) {
-    appendNoteToGUI(uuid, localStorage[uuid]);
-  }
+  const lastUUID = uuidList[uuidList.length-1]
+  focusNote(lastUUID, localStorage[lastUUID]);
 }
 
 createNote.addEventListener('click', () => {
-  appendNoteToGUI(crypto.randomUUID());
+  focusNote(crypto.randomUUID());
 });
 
-function appendNoteToGUI(uuid, content) {
+function focusNote(uuid, content) {
   console.log(uuid, content);
 
   if (content == undefined) {
@@ -33,6 +32,11 @@ function appendNoteToGUI(uuid, content) {
   const note = document.createElement('div');
   note.classList.add('note');
   note.setAttribute('id', uuid);
+
+  Array.from(notesList.children).forEach(e => {
+    notes[e.id] = undefined;
+    notesList.removeChild(e);
+  })
 
   notesList.append(note);
 
