@@ -38,7 +38,7 @@ function focusNote(uuid) {
     data: localStorage.getItem(uuid) ? JSON.parse(localStorage.getItem(uuid)) : undefined,
 
     onChange: (api, event) => {
-      console.log(api, event);
+      // console.log(api, event);
 
       currentNote.save().then((outputData) => {
         localStorage[uuid] = JSON.stringify(outputData);
@@ -55,10 +55,14 @@ function renderNotesList() {
 
   notesList.textContent = '';
 
-  for (const note of uuidList) {
+  for (const uuid of uuidList) {
     const noteSelector = document.createElement('button');
-    noteSelector.textContent = note;
+    noteSelector.textContent = uuid;
     noteSelector.classList.add('noteSelector');
+    noteSelector.onclick = () => {
+      focusNote(uuid);
+    }
+
     notesList.appendChild(noteSelector);
   }
 }
