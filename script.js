@@ -1,7 +1,7 @@
 const createNote = document.getElementById('createNote');
 const notesList = document.getElementById('notesList');
 
-const notes = {};
+let currentNote = undefined;
 
 const uuidList = JSON.parse(localStorage.getItem('uuidList'));
 if (uuidList) {
@@ -33,14 +33,11 @@ function focusNote(uuid, content) {
   note.classList.add('note');
   note.setAttribute('id', uuid);
 
-  Array.from(notesList.children).forEach(e => {
-    notes[e.id] = undefined;
-    notesList.removeChild(e);
-  })
+  if (notesList.children.length > 0)
+    notesList.removeChild(notesList.children[0]);
+  notesList.appendChild(note);
 
-  notesList.append(note);
-
-  notes[uuid] = new EditorJS({
+  currentNote = new EditorJS({
     holder: uuid
   });
 }
