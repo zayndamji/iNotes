@@ -1,5 +1,6 @@
 const createNote = document.getElementById('createNote');
 const notesList = document.getElementById('notesList');
+const focusedNote = document.getElementById('focusedNote');
 
 let currentNote = undefined;
 
@@ -21,9 +22,11 @@ function focusNote(uuid, content) {
   }
 
   const uuidList = JSON.parse(localStorage.getItem('uuidList'));
-  if (uuidList && !uuidList.includes(uuid)) {
-    uuidList.push(uuid);
-    localStorage.setItem('uuidList', JSON.stringify(uuidList));
+  if (uuidList) {
+    if (!uuidList.includes(uuid)) {
+      uuidList.push(uuid);
+      localStorage.setItem('uuidList', JSON.stringify(uuidList));
+    }
   } else {
     localStorage.setItem('uuidList', JSON.stringify([uuid]));
   }
@@ -33,11 +36,27 @@ function focusNote(uuid, content) {
   note.classList.add('note');
   note.setAttribute('id', uuid);
 
-  if (notesList.children.length > 0)
-    notesList.removeChild(notesList.children[0]);
-  notesList.appendChild(note);
+  if (focusedNote.children.length > 0)
+    focusedNote.removeChild(focusedNote.children[0]);
+  focusedNote.appendChild(note);
 
   currentNote = new EditorJS({
     holder: uuid
   });
+
+  renderNotesList();
+}
+
+function renderNotesList() {
+  const uuidList = JSON.parse(localStorage.getItem('uuidList'));
+  if (!uuidList) return;
+
+  notesList.textContent = '';
+
+  for (const note of uuidList) {
+    const noteSelector = document.createElement('button');
+    noteSelector.textContent = note;
+    noteSelector.classList.add('noteSelector');
+    notesList.appendChild(noteSelector);
+  }
 }
