@@ -20,10 +20,12 @@ body {
 #focusedNote {
   width: 100%;
   position: fixed;
-  top: 64px;
+  top: 48px;
   bottom: 64px;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding-bottom: 8px;
+  padding-top: 8px;
 }
 
 #notesList {
