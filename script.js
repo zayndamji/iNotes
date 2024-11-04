@@ -32,19 +32,11 @@ function appendNoteToGUI(uuid, content) {
 
   const note = document.createElement('div');
   note.classList.add('note');
-  note.setAttribute('uuid', uuid);
-
-  const noteInput = document.createElement('textarea');
-
-  note.append(noteInput);
+  note.setAttribute('id', uuid);
 
   notesList.append(note);
 
-  notes[uuid] = new SimpleMDE({ element: noteInput });
-
-  notes[uuid].codemirror.on('change', () => {
-    localStorage[uuid] = notes[uuid].value();
+  notes[uuid] = new EditorJS({
+    holder: uuid
   });
-
-  notes[uuid].value(content);
 }
