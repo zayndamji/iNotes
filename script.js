@@ -1,3 +1,4 @@
+// DOM elements to interact with
 const createNote = document.getElementById('createNote');
 const deleteNote = document.getElementById('deleteNote');
 const notesList = document.getElementById('notesList');
@@ -5,6 +6,7 @@ const focusedNote = document.getElementById('focusedNote');
 
 let currentNote = undefined, currentUUID = undefined;
 
+// displays last edited note OR empty note if no notes have been created
 const uuidList = getUUIDList();
 if (uuidList && uuidList[0]) {
   focusNote(uuidList[0]);
@@ -14,6 +16,7 @@ if (uuidList && uuidList[0]) {
 
 createNote.addEventListener('click', createEmptyNote);
 
+// deletes the focused note
 deleteNote.addEventListener('click', () => {
   if (currentUUID == undefined) return;
 
@@ -40,10 +43,12 @@ deleteNote.addEventListener('click', () => {
   }
 });
 
+// creates an empty note with random uuid
 function createEmptyNote() {
   focusNote(crypto.randomUUID());
 }
 
+// focuses note with uuid
 function focusNote(uuid) {
   const uuidList = getUUIDList();
 
@@ -85,6 +90,7 @@ function focusNote(uuid) {
   renderNotesList();
 }
 
+// re-renders notes list
 function renderNotesList() {
   const uuidList = getUUIDList();
 
@@ -129,6 +135,7 @@ function renderNotesList() {
   notesList.appendChild(spacer);
 }
 
+// gets and sorts UUID list
 function getUUIDList() {
   let uuidList = JSON.parse(localStorage.getItem('uuidList'));
   if (!uuidList) return undefined;
@@ -147,6 +154,7 @@ function getUUIDList() {
   return uuidList;
 }
 
+// truncates string to numOfChars, with trailing dots if the string is too long.
 function truncate(string, numOfChars) {
   if (string.length <= numOfChars) {
     return string;
@@ -160,5 +168,7 @@ function truncate(string, numOfChars) {
 }
 
 function sanitize(string) {
-  return string.replace(/&nbsp;/gi, '').replace(/<b>/gi, '').replace(/<\/b>/gi, '').replace(/<i>/gi, '').replace(/<\/i>/gi, '');;
+  return string.replace(/&nbsp;/gi, '') // remove non-breaking spaces from display
+               .replace(/<b>/gi, '').replace(/<\/b>/gi, '') // remove bold (<b>)
+               .replace(/<i>/gi, '').replace(/<\/i>/gi, ''); // remove italics (<i>)
 }
