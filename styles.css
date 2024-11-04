@@ -8,6 +8,7 @@ body {
 
 #createNote, .noteSelector {
   min-width: 128px;
+  max-width: 256px;
   height: 32px;
   margin: 8px;
   border: black solid 1px;
