@@ -62,8 +62,9 @@ function focusNote(uuid) {
 
   currentNote = new EditorJS({
     holder: uuid,
-
     data: localStorage.getItem(uuid) ? JSON.parse(localStorage.getItem(uuid)) : undefined,
+    autofocus: true,
+    placeholder: 'Start writing whatever you want!',
 
     onChange: (api, event) => {
       // console.log(api, event);
