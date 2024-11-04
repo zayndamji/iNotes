@@ -56,8 +56,14 @@ function renderNotesList() {
   notesList.textContent = '';
 
   for (const uuid of uuidList) {
+    let selectorText = 'Empty Note';
+    if (localStorage[uuid] != undefined) {
+      let noteContent = JSON.parse(localStorage[uuid]);
+      selectorText = truncate(noteContent.blocks[0].data.text, 30);
+    }
+
     const noteSelector = document.createElement('button');
-    noteSelector.textContent = uuid;
+    noteSelector.textContent = selectorText;
     noteSelector.classList.add('noteSelector');
     noteSelector.onclick = () => {
       focusNote(uuid);
