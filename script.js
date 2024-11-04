@@ -28,6 +28,7 @@ deleteNote.addEventListener('click', () => {
   }
 
   const uuidIndex = uuidList.indexOf(currentUUID);
+  localStorage.removeItem(uuidList[uuidIndex]);
   uuidList.splice(uuidIndex, 1); // remove uuid at index uuidIndex
   localStorage.setItem('uuidList', JSON.stringify(uuidList));
   if (uuidIndex == 0) {
