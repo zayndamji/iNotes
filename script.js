@@ -5,9 +5,9 @@ const focusedNote = document.getElementById('focusedNote');
 
 let currentNote = undefined, currentUUID = undefined;
 
-const uuidList = JSON.parse(localStorage.getItem('uuidList'));
-if (uuidList) {
-  focusNote(uuidList[uuidList.length-1]);
+const uuidList = getUUIDList();
+if (uuidList && uuidList[0]) {
+  focusNote(uuidList[0]);
 } else {
   createEmptyNote();
 }
@@ -17,7 +17,7 @@ createNote.addEventListener('click', createEmptyNote);
 deleteNote.addEventListener('click', () => {
   if (currentUUID == undefined) return;
 
-  const uuidList = JSON.parse(localStorage.getItem('uuidList'));
+  const uuidList = getUUIDList();
   if (uuidList == undefined) return;
   if (uuidList.length == 0) return;
 
@@ -45,7 +45,8 @@ function createEmptyNote() {
 }
 
 function focusNote(uuid) {
-  const uuidList = JSON.parse(localStorage.getItem('uuidList'));
+  const uuidList = getUUIDList();
+
   if (uuidList) {
     if (!uuidList.includes(uuid)) {
       uuidList.push(uuid);
@@ -85,19 +86,7 @@ function focusNote(uuid) {
 }
 
 function renderNotesList() {
-  let uuidList = JSON.parse(localStorage.getItem('uuidList'));
-  if (!uuidList) return;
-
-  uuidList = uuidList
-  .map(e => {
-    const timestamp = localStorage[e] ? JSON.parse(localStorage[e]).time : (new Date().getTime());
-    return {
-      uuid: e,
-      timestamp: timestamp
-    }
-  })
-  .sort((a, b) => b.timestamp - a.timestamp)
-  .map(e => e.uuid);
+  const uuidList = getUUIDList();
 
   notesList.textContent = '';
 
@@ -138,6 +127,24 @@ function renderNotesList() {
   const spacer = document.createElement('span')
   spacer.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
   notesList.appendChild(spacer);
+}
+
+function getUUIDList() {
+  let uuidList = JSON.parse(localStorage.getItem('uuidList'));
+  if (!uuidList) return undefined;
+
+  uuidList = uuidList
+  .map(e => {
+    const timestamp = localStorage[e] ? JSON.parse(localStorage[e]).time : (new Date().getTime());
+    return {
+      uuid: e,
+      timestamp: timestamp
+    }
+  })
+  .sort((a, b) => b.timestamp - a.timestamp)
+  .map(e => e.uuid);
+
+  return uuidList;
 }
 
 function truncate(string, numOfChars) {
