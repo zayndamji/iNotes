@@ -85,8 +85,19 @@ function focusNote(uuid) {
 }
 
 function renderNotesList() {
-  const uuidList = JSON.parse(localStorage.getItem('uuidList'));
+  let uuidList = JSON.parse(localStorage.getItem('uuidList'));
   if (!uuidList) return;
+
+  uuidList = uuidList
+  .map(e => {
+    const timestamp = localStorage[e] ? JSON.parse(localStorage[e]).time : (new Date().getTime());
+    return {
+      uuid: e,
+      timestamp: timestamp
+    }
+  })
+  .sort((a, b) => b.timestamp - a.timestamp)
+  .map(e => e.uuid);
 
   notesList.textContent = '';
 
