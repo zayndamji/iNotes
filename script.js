@@ -8,6 +8,8 @@ let currentNote = undefined, currentUUID = undefined;
 const uuidList = JSON.parse(localStorage.getItem('uuidList'));
 if (uuidList) {
   focusNote(uuidList[uuidList.length-1]);
+} else {
+  createEmptyNote();
 }
 
 createNote.addEventListener('click', createEmptyNote);
@@ -101,8 +103,8 @@ function renderNotesList() {
           noteContent.blocks[0] &&
           noteContent.blocks[0].data && 
           noteContent.blocks[0].data.text) {
-        selectorText = truncate(noteContent.blocks[0].data.text, 20);
-        selectorText = sanitize(selectorText);
+        selectorText = sanitize(noteContent.blocks[0].data.text);
+        selectorText = truncate(selectorText, 20);
       }
     }
 
@@ -130,5 +132,5 @@ function truncate(string, numOfChars) {
 }
 
 function sanitize(string) {
-  return string.replace(/&nbsp;/gi, '').replace(/<b>/gi, '').replace(/<\/b>/gi, '');
+  return string.replace(/&nbsp;/gi, '').replace(/<b>/gi, '').replace(/<\/b>/gi, '').replace(/<i>/gi, '').replace(/<\/i>/gi, '');;
 }
