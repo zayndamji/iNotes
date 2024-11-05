@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
-  margin: 16px;
+  margin: 0;
+  padding: 8px;
   font-family: Roboto, sans-serif;
   text-align: center;
   background-color: rgb(22, 22, 22);
+  scrollbar-color: white rgb(22, 22, 22);
 }
 
 #topbar {
@@ -15,6 +17,9 @@ body {
   z-index: 1;
   background-color: rgb(22, 22, 22);
   padding: 8px 0;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 
 #focusedNote {
@@ -34,11 +39,26 @@ body {
   left: 0;
   width: 100%;
   z-index: 1;
+  height: 48px;
   background-color: rgb(22, 22, 22);
-  padding: 8px 16px;
+  padding: 16px 16px 4px 16px;
   overflow-x: scroll;
   white-space: nowrap;
   scrollbar-color: white rgb(22, 22, 22);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+#websiteIcon {
+  height: 30px;
+  padding-left: 16px;
+  padding-right: 8px;
+}
+
+#websiteTitle {
+  color: white;
+  padding-right: 8px;
 }
 
 button {
