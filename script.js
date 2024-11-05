@@ -11,7 +11,9 @@ const uuidList = getUUIDList();
 if (uuidList && uuidList[0]) {
   focusNote(uuidList[0]);
 } else {
-  createEmptyNote();
+  const uuid = crypto.randomUUID();
+  localStorage.setItem(uuid, JSON.stringify({"time":1730769988217,"blocks":[{"id":"Ux8d0IhMH9","type":"paragraph","data":{"text":"<b>Demo Note</b>"}},{"id":"9O_ROcctlg","type":"paragraph","data":{"text":"This is the <i>iNotes</i>&nbsp;app, where you can write notes about anything!"}},{"id":"_bNC8nJB3_","type":"paragraph","data":{"text":"In <i>iNotes</i>, you can <b>bold</b>&nbsp;words by clicking Command+B and <i>italicize </i>words by clicking Command+I. You can also <i>bold and italize</i>&nbsp;words/phrases by clicking both of the above shortcuts."}},{"id":"0T2q6iKlZP","type":"paragraph","data":{"text":"To create your own note, click the \"Create Note\" button in the top left."}},{"id":"c-yU7nFQBb","type":"paragraph","data":{"text":"If you want, you can delete this note by clicking the \"Delete Note\" button in the top left. That will automatically delete this note and create a new note for you."}},{"id":"uK68Lr6D3_","type":"paragraph","data":{"text":"<b>All of your notes will be saved in your browser, and loaded back once you reload the page.</b>"}}],"version":"2.30.6"}));
+  focusNote(uuid);
 }
 
 createNote.addEventListener('click', createEmptyNote);
