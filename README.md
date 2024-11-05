@@ -5,7 +5,7 @@ Notes are stored in the browser's local storage (not sent to a cloud) and automa
 
 Users are able to edit their notes to add sections with various amounts of text. This text will be saved locally on their browsers.
 <br>
-<img src="resources/note.png" style="width: 40%; border-radius: 16px;"><br>
+<img src="resources/note.png" style="height: 320px; border-radius: 16px;"><br>
 
 Users are able to browse through their previous notes, read, and edit them through the bar at the bottom of the page.
 <br>
@@ -19,4 +19,4 @@ Users can also create new notes or delete the focused note using the buttons at 
 
 # Full Page Demo
 
-<img src="resources/screenshot.png" style="width: 100%; border-radius: 16px;"><br>
+<img src="resources/screenshot.png" style="height: 512px; border-radius: 16px;"><br>
