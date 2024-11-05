@@ -5,7 +5,7 @@ Notes are stored in the browser's local storage (not sent to a cloud) and automa
 
 Users are able to edit their notes to add sections with various amounts of text. This text will be saved locally on their browsers.
 <br><br>
-<img src="https://raw.githubusercontent.com/zayndamji/notes-webapp/refs/heads/main/resources/note.png" style="width: 320px; border-radius: 16px;"><br>
+<img src="https://raw.githubusercontent.com/zayndamji/notes-webapp/refs/heads/main/resources/note.png" style="width: 100%; border-radius: 16px;"><br>
 
 Users are able to browse through their previous notes, read, and edit them through the bar at the bottom of the page.
 <br>
