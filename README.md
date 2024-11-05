@@ -5,19 +5,19 @@ Notes are stored in the browser's local storage (not sent to a cloud) and automa
 
 Users are able to edit their notes to add sections with various amounts of text. This text will be saved locally on their browsers.
 <br><br>
-<img src="resources/note.png" style="width: 320px; border-radius: 16px;"><br>
+<img src="https://raw.githubusercontent.com/zayndamji/notes-webapp/refs/heads/main/resources/note.png" style="width: 320px; border-radius: 16px;"><br>
 
 Users are able to browse through their previous notes, read, and edit them through the bar at the bottom of the page.
 <br>
-<img src="resources/bottom.png" style="width: 100%; border-radius: 16px;"><br>
+<img src="https://raw.githubusercontent.com/zayndamji/notes-webapp/refs/heads/main/resources/bottom.png" style="width: 100%; border-radius: 16px;"><br>
 
 Users can also create new notes or delete the focused note using the buttons at the top of the page.
 <br>
-<img src="resources/top.png" style="width: 100%; border-radius: 16px;"><br>
+<img src="https://raw.githubusercontent.com/zayndamji/notes-webapp/refs/heads/main/resources/top.png" style="width: 100%; border-radius: 16px;"><br>
 
 ### View website at https://zayndamji.github.io/notes-webapp/
 <br>
 
 # Full Page Demo
 
-<img src="resources/screenshot.png" style="width: 100%; border-radius: 16px;"><br>
+<img src="https://raw.githubusercontent.com/zayndamji/notes-webapp/refs/heads/main/resources/screenshot.png" style="width: 100%; border-radius: 16px;"><br>
